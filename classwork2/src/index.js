@@ -35,5 +35,9 @@ document.write(result);
 let age = prompt("Укажите свой возраст", '');
 
 if (age >= 18 && age <= 35) {
-    document.write('<meta http-equiv="refresh" content="2, url=http://google.com">')
+    document.write('<meta http-equiv="refresh" content="2, url=https://google.com">')
+} else if (age > 35 && age <= 60) {
+    document.write('<meta http-equiv="refresh" content="0, url=https://www.uz.gov.ua/">')
+} else if (age < 18) {
+    document.write('</br><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/fyQBjtCRMp8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>')
 }
