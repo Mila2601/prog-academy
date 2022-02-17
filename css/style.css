@@ -1,0 +1,30 @@
+body {
+    display: grid;
+    font-family: 'Courier New', Courier, monospace;
+    grid-template-rows: 200px 400px 200px;
+    grid-template-columns: 100px 700px;
+    grid-template-areas: "header header"  
+                         "nav section"  
+                         "footer footer";
+}
+
+header {
+    grid-area: header;
+    border: 2px solid red;
+}
+
+nav {
+    grid-area: nav;
+    border: 2px solid red;
+}
+
+section {
+    grid-area: section;
+    border: 2px solid red;
+    padding: 10px 30px;
+}
+
+footer {
+    grid-area: footer;
+    border: 2px solid black;
+}
