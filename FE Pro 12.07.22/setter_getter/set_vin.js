@@ -12,12 +12,6 @@ class Auto {
     get vin() {
         return this._vin;
     }
-    log(){
-        return ${this.name} ${this.model}, ${this.year}
-    }
-    checkVin(){
-        return this._vin?.length === 16;
-    }
 }
  
 let tesla = new Auto ('Tesla', 'Model X', 2022, '1234567890123456');
