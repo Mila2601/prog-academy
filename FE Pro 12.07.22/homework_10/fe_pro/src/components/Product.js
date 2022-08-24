@@ -1,19 +1,24 @@
-import { Card } from "react-bootstrap";
+import { Card, Button, Col  } from "react-bootstrap";
 
-function Product({product}) {
-    return <Card className="mb-3">
-    <div class="imageContainer">
-        <Card.Img className="image" variant="top" src={product.images[0]} />
-    </div>
-    <Card.Body>
-      <Card.Title>{product.title}</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">{product.brand ? product.brand : '0'}</Card.Subtitle>
-      <Card.Text>
-        {product.description}
-      </Card.Text>
-      <div className="badge bg-primary">{product.price ? product.price : '0'}$</div>
-    </Card.Body>
-  </Card>
+function Product({product, addToCart, removeFromCart}) {
+    return <Col xs={12} md={6} lg={4}>
+      <Card className="mb-3">
+      <div class="imageContainer">
+          <Card.Img className="image" variant="top" src={product.imgSrc} />
+      </div>
+      <Card.Body>
+        <Card.Title>{product.author}</Card.Title>
+        <Card.Subtitle className="publisher mb-2 text-muted">Видавництво "{product.publishing}"</Card.Subtitle>
+        <Card.Text>
+          {product.title}
+        </Card.Text>
+        <Card.Text className="price">{product.price ? (product.price).toFixed(2) : '0'} грн</Card.Text>
+        {!product.addedToCart ? 
+          <Button onClick={() => addToCart(product.id, product.title)} variant="success">Додати в кошик</Button> : 
+          <Button onClick={() => removeFromCart(product.id, product.title)} variant="danger">Видалити з кошика</Button>}
+      </Card.Body>
+    </Card>
+  </Col>
   }
   
   export default Product;

@@ -1,3 +1,7 @@
+.container {
+  border-radius: 5px;
+}
+
 .imageContainer {
   position: relative;
 	width: 300px;
@@ -22,12 +26,12 @@ img {
 	transition: .3s ease-in-out;
 }
 
-.card-title {
+.card p{
   min-height: 50px;
 }
 
-.card p{
-  min-height: 100px;
+.publisher {
+  min-height: 40px;
 }
 
 div.badge {
