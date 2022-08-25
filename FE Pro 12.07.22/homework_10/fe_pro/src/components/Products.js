@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import {Row, Container} from 'react-bootstrap';
+import {Row, Container, Badge} from 'react-bootstrap';
 import Cart from './Cart';
+import CartIcon from "./CartIcon";
 
 function Products () {
     const [products, setProducts] = useState([]);
@@ -15,7 +16,8 @@ function Products () {
           publishing: 'Vivat',
           title: 'Емоційний інтелект',
           price: 235,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 2,
@@ -24,7 +26,8 @@ function Products () {
           publishing: 'Віхола',
           title: 'Медицина доказова і не дуже',
           price: 215,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 3,
@@ -33,7 +36,8 @@ function Products () {
           publishing: 'Vivat',
           title: 'Жінка, яка має план. Життя, сповнене пригод, краси й успіху',
           price: 274,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 4,
@@ -42,7 +46,8 @@ function Products () {
           publishing: 'Школа',
           title: 'Тореадори з Васюківки: трилогія про пригоди двох друзів',
           price: 175,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 5,
@@ -51,7 +56,8 @@ function Products () {
           publishing: 'Віхола',
           title: 'Матера вам не наймичка, або Чому діти це — прекрасно...',
           price: 228,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 6,
@@ -60,7 +66,8 @@ function Products () {
           publishing: '#книголав',
           title: 'Тривожні люди',
           price: 299,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 7,
@@ -69,7 +76,8 @@ function Products () {
           publishing: 'Book Chef',
           title: 'Кров і попіл. Книга 1. Із крові й попелу',
           price: 276,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 8,
@@ -78,7 +86,8 @@ function Products () {
           publishing: 'Видавництво Старого Лева',
           title: 'Місто дівчат',
           price: 249,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 9,
@@ -87,7 +96,8 @@ function Products () {
           publishing: 'Vivat',
           title: 'Кафе на краю світу',
           price: 144,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 10,
@@ -96,7 +106,8 @@ function Products () {
           publishing: 'Book Chef',
           title: 'Зелене світло',
           price: 319,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 11,
@@ -105,7 +116,8 @@ function Products () {
           publishing: '#книголав',
           title: 'Незриме життя Адді Лярю',
           price: 350,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         },
         {
           id: 12,
@@ -114,7 +126,8 @@ function Products () {
           publishing: 'Егмонт',
           title: 'Історії на ніч',
           price: 251,
-          addedToCart: false
+          addedToCart: false,
+          count: 1
         }
       ]) 
   }, [])
@@ -126,8 +139,28 @@ function Products () {
     function removeFromCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})))
     }
+
+    function showCart () {
+      console.log("cbcb");
+      document.getElementsByClassName('bg-gray-transp').classList.add('display-block');
+    }
+
+    function reduceQuantity (id) {
+      setProducts(products.map(product => ({...product, count: product.id === id ? 
+                                                               product.count > 1 ? 
+                                                               product.count - 1 : product.count : product.count})))
+    }
+
+    function increaseQuantity (id) {
+      setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count})))
+    }
+
+    function conso () {
+      console.log('console')
+    }
     
     return <div className='container bg-white mx-auto p-3'>
+      <CartIcon conso={conso} products={products.filter(product => product.addedToCart)}></CartIcon>
       <h1 className="text-center">КНИГИ</h1>
       <Container>
         <Row>
@@ -139,8 +172,10 @@ function Products () {
       </Container>
       {
         products.filter((product) => product.addedToCart).length ? 
-        <Cart removeFromCart={removeFromCart} products={products.filter(product => product.addedToCart)}></Cart> : ''
+        <Cart reduceQuantity={reduceQuantity} increaseQuantity={increaseQuantity} 
+        removeFromCart={removeFromCart} products={products.filter(product => product.addedToCart)}></Cart> : ''
       }
+     
     </div>
 }
 

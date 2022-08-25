@@ -1,8 +1,10 @@
 import { ListGroup, Badge } from 'react-bootstrap';
+import Counter from './Counter';
 
-function CartItem({product, removeFromCart}) {
+function CartItem({product, removeFromCart, reduceQuantity, increaseQuantity}) {
     return <ListGroup.Item className="listItem"
-        key={product.id}>{product.title} ({(product.price).toFixed(2)} грн)<Badge 
+        key={product.id}>{product.title} ({(product.price).toFixed(2)} грн) <Counter product={product} 
+        reduceQuantity={reduceQuantity} increaseQuantity={increaseQuantity} /><Badge 
         pill className='bg-dark' onClick={() => removeFromCart(product.id)}>✕</Badge></ListGroup.Item>
 }
  
