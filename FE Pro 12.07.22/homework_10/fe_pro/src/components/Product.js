@@ -15,7 +15,7 @@ function Product({product, addToCart, removeFromCart}) {
         <Card.Text className="price">{product.price ? (product.price).toFixed(2) : '0'} грн</Card.Text>
         {!product.addedToCart ? 
           <Button onClick={() => addToCart(product.id)} variant="success">Додати в кошик</Button> : 
-          <Button onClick={() => removeFromCart(product.id, product.title)} variant="danger">Видалити з кошика</Button>}
+          <Button onClick={() => removeFromCart(product.id)} variant="danger">Видалити з кошика</Button>}
       </Card.Body>
     </Card>
   </Col>
