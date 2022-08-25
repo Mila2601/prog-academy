@@ -10,7 +10,7 @@ function Cart ({products, removeFromCart, reduceQuantity, increaseQuantity}) {
     useEffect(() => {
         setTotal(products.reduce((acc, product) => {return acc + product.price * product.count}, 0))
     }, [products])
-    return <div className='bg-gray-transp'>
+    return <div className='bg-gray-transp d-none'>
         <div className='cart bg-white p-3'>
             <h3 className='text-center'>Кошик</h3>
             <ListGroup>            
