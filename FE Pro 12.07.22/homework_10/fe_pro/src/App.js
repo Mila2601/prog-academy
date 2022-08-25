@@ -1,11 +1,16 @@
 import './App.css';
 import Products from './components/Products';
-import Cart from './components/Cart';
+import ProfileContext from './context/ProfileContext';
+import { useState } from 'react';
 
 function App() {
+  const [profile, setProfile] = useState({login: '', email: ''});
+
   return (
     <div className='bg-dark p-4' id='app'>
-      <Products />
+      <ProfileContext.Provider value={{profile, setProfile}}>
+        <Products />
+      </ProfileContext.Provider>
     </div>
   );
 }

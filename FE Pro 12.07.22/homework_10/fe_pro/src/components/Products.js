@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import {Row, Container, Badge} from 'react-bootstrap';
+import {Row, Container} from 'react-bootstrap';
 import Cart from './Cart';
 import CartIcon from "./CartIcon";
+import Profile from "./Profile";
 
 function Products () {
     const [products, setProducts] = useState([]);
@@ -156,6 +157,7 @@ function Products () {
     
     return <div className='container bg-white mx-auto p-3'>
       <CartIcon showCart={showCart} products={products.filter(product => product.addedToCart)}></CartIcon>
+      <Profile />
       <h1 className="text-center">КНИГИ</h1>
       <Container>
         <Row>
