@@ -141,8 +141,7 @@ function Products () {
     }
 
     function showCart () {
-      console.log("cbcb");
-      document.getElementsByClassName('bg-gray-transp').classList.add('display-block');
+      document.getElementsByClassName('bg-gray-transp')[0].classList.remove('d-none');
     }
 
     function reduceQuantity (id) {
@@ -154,13 +153,9 @@ function Products () {
     function increaseQuantity (id) {
       setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count})))
     }
-
-    function conso () {
-      console.log('console')
-    }
     
     return <div className='container bg-white mx-auto p-3'>
-      <CartIcon conso={conso} products={products.filter(product => product.addedToCart)}></CartIcon>
+      <CartIcon showCart={showCart} products={products.filter(product => product.addedToCart)}></CartIcon>
       <h1 className="text-center">КНИГИ</h1>
       <Container>
         <Row>
