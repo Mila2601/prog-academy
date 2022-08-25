@@ -31,8 +31,8 @@ p.price {
 
 .cart-top {
     float: right;
-    top: 1.2rem;
-    right: 1rem;
+    top: 0;
+    right: 0;
     position: fixed;
     z-index: 1;
     cursor: pointer;
