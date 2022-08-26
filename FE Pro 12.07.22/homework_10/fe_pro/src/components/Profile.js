@@ -1,5 +1,5 @@
 import { Button, Form } from "react-bootstrap";
-import { React, useContext, useRef} from 'react';
+import { React, useContext, useEffect, useRef} from 'react';
 import ProfileContext from "../context/ProfileContext";
 
 function Profile () {
@@ -9,9 +9,9 @@ function Profile () {
 
     function saveProfile() {
         let reg = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-        if (loginRef.current.value.length > 2 && emailRef.current.value.length > 7) { 
-            setProfile({login: profile.login.length ? profile.login : loginRef.current.value, 
-                        email: profile.email.length ? profile.email : emailRef.current.value});
+        if (loginRef.current.value.length > 2 && emailRef.current.value.length > 7) {
+            setProfile({login: profile.login.length === 0 ? loginRef.current.value : profile.login, 
+                        email: profile.email.length === 0 ? emailRef.current.value : profile.email});
             console.log(profile);
             localStorage.setItem('profile', JSON.stringify(profile));
             document.querySelector('.confirmation').classList.remove('d-none');
