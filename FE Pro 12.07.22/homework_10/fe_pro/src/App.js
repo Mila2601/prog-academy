@@ -10,6 +10,11 @@ function App() {
     const savedProfile = JSON.parse(localStorage.getItem('profile'));
     if(savedProfile?.login?.length) {setProfile(savedProfile)}
     }, [])
+
+    window.onbeforeunload = function() {                
+      localStorage.setItem('profile', JSON.stringify(profile));
+    };
+
   return (
     <div className='bg-dark p-4' id='app'>
       <ProfileContext.Provider value={{profile, setProfile}}>
