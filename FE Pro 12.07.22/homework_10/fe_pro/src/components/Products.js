@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Product from "./Product";
 import {Row, Container} from 'react-bootstrap';
 import Cart from './Cart';
 import CartIcon from "./CartIcon";
 import Profile from "./Profile";
+import MessageContext from "../context/MessageContext";
+import showMessage from "./showMessage";
 
 function Products () {
     const [products, setProducts] = useState([]);
+    const {setMessage} = useContext(MessageContext);
 
     useEffect(() => {
       setProducts([
@@ -134,11 +137,15 @@ function Products () {
   }, [])
 
     function addToCart (id) {
-      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})))
+      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})));
+      showMessage();
+      setMessage(`Ви додали у кошик ${products.map(product => product.id === id ? product.title : '')}`);
     }
 
     function removeFromCart (id) {
-      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})))
+      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})));
+      showMessage();
+      setMessage(`Ви видалили з кошика ${products.map(product => product.id === id ? product.title : '')}`);
     }
 
     function showCart () {

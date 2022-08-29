@@ -37,3 +37,13 @@ img {
 div.badge {
   font-size: 20px;
 }
+
+div.message {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 255, 0, 0.5);
+  padding: 10px 15px;
+  color: white;
+  border-radius: .3rem;
+}

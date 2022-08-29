@@ -1,25 +1,22 @@
 import './App.css';
+import { useState} from 'react';
 import Products from './components/Products';
+import Message from './components/Message';
 import ProfileContext from './context/ProfileContext';
-import { useState, useEffect } from 'react';
+import MessageContext from './context/MessageContext';
 
 function App() {
   const [profile, setProfile] = useState({login: '', email: ''});
-
-  useEffect(() => {
-    const savedProfile = JSON.parse(localStorage.getItem('profile'));
-    if(savedProfile?.login?.length) {setProfile(savedProfile)}
-    }, [])
-
-    window.onbeforeunload = function() {                
-      localStorage.setItem('profile', JSON.stringify(profile));
-    };
+  const [message, setMessage] = useState('');
 
   return (
     <div className='bg-dark p-4' id='app'>
       <ProfileContext.Provider value={{profile, setProfile}}>
         <Products />
       </ProfileContext.Provider>
+      <MessageContext.Provider value={{message, setMessage}}>          
+          <Message />
+      </MessageContext.Provider>
     </div>
   );
 }
