@@ -139,13 +139,13 @@ function Products () {
     function addToCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})));
       showMessage();
-      setMessage(`Ви додали у кошик ${products.map(product => product.id === id ? product.title : '')}`);
+      setMessage(`Ви додали у кошик "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"`);
     }
 
     function removeFromCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})));
       showMessage();
-      setMessage(`Ви видалили з кошика ${products.map(product => product.id === id ? product.title : '')}`);
+      setMessage(`Ви видалили з кошика "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"`);
     }
 
     function showCart () {

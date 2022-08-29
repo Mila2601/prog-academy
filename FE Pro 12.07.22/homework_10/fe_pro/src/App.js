@@ -12,11 +12,11 @@ function App() {
   return (
     <div className='bg-dark p-4' id='app'>
       <ProfileContext.Provider value={{profile, setProfile}}>
-        <Products />
+        <MessageContext.Provider value={{message, setMessage}}>   
+            <Products />       
+            <Message />
+        </MessageContext.Provider>        
       </ProfileContext.Provider>
-      <MessageContext.Provider value={{message, setMessage}}>          
-          <Message />
-      </MessageContext.Provider>
     </div>
   );
 }

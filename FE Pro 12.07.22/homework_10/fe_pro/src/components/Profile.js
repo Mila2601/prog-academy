@@ -2,6 +2,7 @@ import { Button, Form } from "react-bootstrap";
 import { React, useContext, useEffect, useRef} from 'react';
 import ProfileContext from "../context/ProfileContext";
 import MessageContext from "../context/MessageContext";
+import showMessage from "./showMessage";
 
 
 function Profile () {
@@ -22,7 +23,8 @@ function Profile () {
                         email: profile.email.length === 0 ? emailRef.current.value : profile.email});
             document.querySelector('.formProfile').classList.add('d-none');
             document.querySelector('.message').classList.remove('d-none');
-            setMessage(`Вітаємо, ${profile.login}!`);
+            showMessage();
+            setMessage(`Вітаємо, ${profile.login.length === 0 ? loginRef.current.value : profile.login}!`);
         } else {
             alert(`Введіть правильні логін та email-адресу`)
         }
