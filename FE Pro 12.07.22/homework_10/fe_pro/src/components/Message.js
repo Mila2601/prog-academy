@@ -8,7 +8,8 @@ function Message () {
   console.log(`arr is ${JSON.stringify(messageArr)}`);
 
   let str = messageArr.reduce((acc, element) => {
-    return acc = acc + element.message}, '');
+    return acc = acc + element.message
+  }, '');
     
   return <div className="message">{str}</div>
 }

@@ -29,7 +29,7 @@ function Profile () {
         }
     }
 
-    return <div className="container bg-white">
+    return <div className="container bg-white py-2">
         {!profile.login.length ? 
             <Form className="formProfile ">
                 <h3>Будь ласка, введіть свої данні:</h3>

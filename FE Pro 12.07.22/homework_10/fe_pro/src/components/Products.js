@@ -161,7 +161,7 @@ function Products () {
 
     TimeCounter();
     
-    return <div > 
+    return <div className="container bg-white"> 
       <CartIcon showCart={showCart} products={products.filter(product => product.addedToCart)}></CartIcon>
       <h1 className="text-center">КНИГИ</h1>
       <Container>
