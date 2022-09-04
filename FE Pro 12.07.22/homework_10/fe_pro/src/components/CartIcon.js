@@ -8,7 +8,6 @@ function CartIcon ({products, showCart}) {
               {products.reduce((acc, product) => acc + product.count, 0)}
           </Badge>
       </i>
-      <span className="cartText">Кошик</span>    
   </div>
 }
 

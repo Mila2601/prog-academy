@@ -3,9 +3,8 @@ import Product from "./Product";
 import {Row, Container} from 'react-bootstrap';
 import Cart from './Cart';
 import CartIcon from "./CartIcon";
-import Profile from "./Profile";
 import MessageContext from "../context/MessageContext";
-import showMessage from "./showMessage";
+import TimeCounter from "./TimeCounter";
 
 function Products () {
     const [products, setProducts] = useState([]);
@@ -138,14 +137,12 @@ function Products () {
 
     function addToCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})));
-      showMessage();
-      setMessage(`Ви додали у кошик "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"`);
+      setMessage(`<p>Ви додали у кошик "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"</p>`);
     }
 
     function removeFromCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})));
-      showMessage();
-      setMessage(`Ви видалили з кошика "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"`);
+      setMessage(`<p>Ви видалили з кошика "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"</p>`);
     }
 
     function showCart () {
@@ -161,10 +158,11 @@ function Products () {
     function increaseQuantity (id) {
       setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count})))
     }
+
+    TimeCounter();
     
-    return <div className='container bg-white mx-auto p-3'>
+    return <div > 
       <CartIcon showCart={showCart} products={products.filter(product => product.addedToCart)}></CartIcon>
-      <Profile />
       <h1 className="text-center">КНИГИ</h1>
       <Container>
         <Row>
