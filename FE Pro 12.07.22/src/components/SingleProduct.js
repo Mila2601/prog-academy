@@ -4,8 +4,8 @@ import {Col} from 'react-bootstrap'
 
 function SingleProduct() {
   const {productId} = useParams();
-  const [singleProduct, setSingleProduct] = useState({});
   const products = useOutletContext();
+  const [singleProduct, setSingleProduct] = useState({});
 
   useEffect(() => {
     if(products?.length) {
@@ -18,8 +18,9 @@ function SingleProduct() {
   }, [products, productId]);
 
   return <Col xs={12}>
-    <h2>Product: {singleProduct.brand} {singleProduct.model}</h2>
-    <h2>Price: ${singleProduct.price}</h2>
+    {console.log(JSON.stringify(singleProduct))}
+    <h2>Ви вибрали: "{singleProduct.title}", автор {singleProduct.author}</h2>
+    <h2>Ціна: {singleProduct.price} грн</h2>
   </Col>
 }
 

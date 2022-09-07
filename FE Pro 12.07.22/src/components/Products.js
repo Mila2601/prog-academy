@@ -165,9 +165,9 @@ function Products () {
     
     return <div className="container bg-white"> 
       <CartIcon products={products.filter(product => product.addedToCart)}></CartIcon>
-      <Row><Outlet context={products}/></Row>
       <h1 className="text-center">КНИГИ</h1>
       <Container>
+        <Row><Outlet context={products}/></Row>
         <Row>
         {products.map(product => <Product key={product.title} 
                                           product={product} 
