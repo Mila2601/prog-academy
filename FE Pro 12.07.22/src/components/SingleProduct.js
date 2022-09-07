@@ -19,7 +19,7 @@ function SingleProduct() {
 
   return <Col xs={12}>
     {console.log(JSON.stringify(singleProduct))}
-    <h2>Ви вибрали: "{singleProduct.title}", автор {singleProduct.author}</h2>
+    <h2>Ви вибрали: "{singleProduct?.title}", автор {singleProduct?.author}</h2>
     <h2>Ціна: {singleProduct.price} грн</h2>
   </Col>
 }
