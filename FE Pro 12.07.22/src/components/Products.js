@@ -5,10 +5,14 @@ import Cart from './Cart';
 import CartIcon from "./CartIcon";
 import MessageContext from "../context/MessageContext";
 import TimeCounter from "./TimeCounter";
+import {Outlet} from "react-router-dom";
+
 
 function Products () {
     const [products, setProducts] = useState([]);
     const {setMessage} = useContext(MessageContext);
+    const {setAlertMessage} = useContext(MessageContext);
+
 
     useEffect(() => {
       setProducts([
@@ -137,12 +141,14 @@ function Products () {
 
     function addToCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})));
-      setMessage(`<p>Ви додали у кошик "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"</p>`);
+      const productName = products.filter(product => product.id === id).map(el => `${el.title}`)[0];
+      setAlertMessage({text: `Ви додали "${productName}" до кошика`});
     }
 
     function removeFromCart (id) {
       setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})));
-      setMessage(`<p>Ви видалили з кошика "${(products.map(product => product.id === id ? product.title : '')).toString().replace(/,/g, '')}"</p>`);
+      const productName = products.filter(product => product.id === id).map(el => `${el.title}`)[0];
+      setAlertMessage({text: `В видалили "${productName}" з кошика`});
     }
 
     function reduceQuantity (id) {
@@ -155,10 +161,11 @@ function Products () {
       setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count})))
     }
 
-    TimeCounter();
+    //TimeCounter();
     
     return <div className="container bg-white"> 
       <CartIcon products={products.filter(product => product.addedToCart)}></CartIcon>
+      <Row><Outlet context={products}/></Row>
       <h1 className="text-center">КНИГИ</h1>
       <Container>
         <Row>

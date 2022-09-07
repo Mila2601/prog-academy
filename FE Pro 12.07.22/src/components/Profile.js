@@ -1,7 +1,8 @@
 import { Button, Form } from "react-bootstrap";
-import { React, useContext, useEffect, useRef} from 'react';
+import { React, useContext, useEffect, useRef, useState} from 'react';
 import ProfileContext from "../context/ProfileContext";
 import MessageContext from "../context/MessageContext";
+import { Navigate } from "react-router-dom";
 
 
 function Profile () {
@@ -9,6 +10,8 @@ function Profile () {
     let emailRef = useRef(null);
     const {profile, setProfile} = useContext(ProfileContext);
     const {setMessage} = useContext(MessageContext);
+    const [isProfileSaved, setIsProfileSaved] = useState(false);
+    const {setAlertMessage} = useContext(MessageContext);
     
   useEffect(() => {
     const savedProfile = JSON.parse(localStorage.getItem('profile'));
@@ -23,10 +26,11 @@ function Profile () {
             localStorage.setItem('profile', JSON.stringify(savingProfile));
             document.querySelector('.formProfile').classList.add('d-none');
             document.querySelector('.message').classList.remove('d-none');
-            setMessage(`<p>Вітаємо, ${savingProfile.login.length === 0 ? loginRef.current.value : profile.login}!</p>`);
+            setAlertMessage({text: 'Вітаємо, ' + savingProfile.login});
         } else {
             alert(`Введіть правильні логін та email-адресу`)
         }
+        setIsProfileSaved(true);
     }
 
     return <div className="container bg-white py-2">
@@ -45,6 +49,7 @@ function Profile () {
                             placeholder="Введіть вашу email-адресу"></Form.Control>
                 <Button onClick={saveProfile} className="mt-4 mb-4" variant={'success'}>Підтвердити</Button>
             </Form> : ""}
+            {isProfileSaved ? <Navigate to="/" /> : ''}
     </div>
 }
 

@@ -2,16 +2,15 @@ import { useContext, useEffect } from "react";
 import MessageContext from "../context/MessageContext";
 
 function TimeCounter () {
-    const { messageArr, message } = useContext(MessageContext);
+    const { setAlertMessage, alertMessage } = useContext(MessageContext);
 
     useEffect( () => {
-        setInterval(() => {messageArr.forEach(element => {        
+        setInterval(() => {alertMessage.forEach(element => {        
             if (element.timeOfLive > 0) {element.timeOfLive = element.timeOfLive - 1}
-            else {messageArr.shift();
-            console.log(`shift`)};
+            // else {setAlertMessage(alertMessage.filter((el) => {el.timeOfLive > 0}))
+            // console.log(`shift`)};
         });}, 1000);
-
-    }, [message]);
+    }, []);
 }
 
 export default TimeCounter;

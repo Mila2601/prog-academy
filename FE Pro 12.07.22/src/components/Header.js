@@ -5,7 +5,7 @@ import {
   Link
 } from "react-router-dom";
 
-function Header () {
+function Header (props) {
   const { profile, setProfile } = useContext(ProfileContext);
 
   function logOut () {
@@ -24,6 +24,7 @@ function Header () {
           </div>
         </div>
       </nav> 
+      <ul>{props.children.map((el, ind) => <li key={ind}>{el}</li>)}</ul>
       {profile.login.length ? 
             <div className="d-flex align-items-baseline">
                 <p className="p-3 m-0">{`Вітаємо, ${profile.login}!`}</p> 
