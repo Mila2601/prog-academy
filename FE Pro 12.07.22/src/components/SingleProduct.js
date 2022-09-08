@@ -18,9 +18,8 @@ function SingleProduct() {
   }, [products, productId]);
 
   return <Col xs={12}>
-    {console.log(JSON.stringify(singleProduct))}
-    <h2>Ви вибрали: "{singleProduct?.title}", автор {singleProduct?.author}</h2>
-    <h2>Ціна: {singleProduct.price} грн</h2>
+    <h6>Ви вибрали: "{singleProduct?.title}", автор {singleProduct?.author}</h6>
+    <h6>Ціна: {singleProduct.price} грн</h6>
   </Col>
 }
 

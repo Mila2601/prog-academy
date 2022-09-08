@@ -18,7 +18,7 @@ function Header (props) {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link className="nav-item nav-link" to="../">Головна<span className="sr-only">(current)</span></Link>
+            <Link className="nav-item nav-link" to="../products">Головна<span className="sr-only">(current)</span></Link>
             <Link className="nav-item nav-link" to="/about-us">Про нас</Link>
             <Link className="nav-item nav-link" to="/*">Сторінку не знайдено</Link>
           </div>

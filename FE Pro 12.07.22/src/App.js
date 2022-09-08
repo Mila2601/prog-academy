@@ -21,13 +21,14 @@ import {
 
 function App() {
   const [profile, setProfile] = useState({login: '', email: ''});
-  const [alertMessage, setAlertMessage] = useState({text: '', timeOfLive: 5});
+  const [alertMessage, setAlertMessage] = useState({text: ''});
+  const [mArr, setMArr] = useState([{}]);
   const answer = <b>Hello, greeting!</b>
 
   return (
     <div className='bg-dark d-flex flex-column' id='app'>      
       <ProfileContext.Provider value={{profile, setProfile}}>
-        <MessageContext.Provider value={{setAlertMessage}}>
+        <MessageContext.Provider value={{setAlertMessage, setMArr}}>
           <BrowserRouter>
             <Header>
               {answer}
@@ -35,9 +36,9 @@ function App() {
             </Header>
             <Profile />
             <Routes>
-              <Route path="/" element={<>
+              <Route path="/products" element={<>
                   <Products /> 
-                  <AlertMessage messageObj={alertMessage} />            
+                  <AlertMessage messageObj={alertMessage} messageArray={mArr}/>            
                 </> 
               }>  
                 <Route path=":productId" element={<SingleProduct />} />
