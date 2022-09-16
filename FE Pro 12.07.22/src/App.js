@@ -22,13 +22,13 @@ import {
 function App() {
   const [profile, setProfile] = useState({login: '', email: ''});
   const [alertMessage, setAlertMessage] = useState({text: ''});
-  const [mArr, setMArr] = useState([{}]);
+  const [mArr, setMArr] = useState([]);
   const answer = <b>Hello, greeting!</b>
 
   return (
     <div className='bg-dark d-flex flex-column' id='app'>      
       <ProfileContext.Provider value={{profile, setProfile}}>
-        <MessageContext.Provider value={{setAlertMessage, setMArr}}>
+        <MessageContext.Provider value={{setAlertMessage, setMArr, mArr}}>
           <BrowserRouter>
             <Header>
               {answer}

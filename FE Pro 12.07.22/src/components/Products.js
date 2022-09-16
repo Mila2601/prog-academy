@@ -1,18 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Product from "./Product";
-import {Row, Container} from 'react-bootstrap';
+import {Row, Container } from 'react-bootstrap';
 import Cart from './Cart';
 import CartIcon from "./CartIcon";
 import MessageContext from "../context/MessageContext";
 import {Outlet} from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { setProducts } from '../features/productsSlice'
 
 
 function Products () {
-    const [products, setProducts] = useState([]);
-    const {setAlertMessage, mArr, setMArr} = useContext(MessageContext);
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
+  const {setAlertMessage, mArr, setMArr} = useContext(MessageContext);
 
     useEffect(() => {
-      setProducts([
+      dispatch(setProducts([
         {
           id: 1,
           imgSrc: 'https://book-ye.com.ua/upload/resize_cache/iblock/e8d/520_860_1/1d054ef2_f54e_11e7_80e4_000c29ae1566_1dde31a7_d5e0_11ec_816f_0050568ef5e6.jpg',
@@ -133,31 +136,31 @@ function Products () {
           addedToCart: false,
           count: 1
         }
-      ]) 
+      ]) )
   }, [])
 
     function addToCart (id) {
-      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart})));
+      dispatch(setProducts(products.map(product => ({...product, addedToCart: product.id === id ? true : product.addedToCart}))));
       const productName = products.filter(product => product.id === id).map(el => `${el.title}`)[0];
       setAlertMessage({text: `Ви додали "${productName}" до кошика`});
       setMArr([...mArr, {text: `Ви додали "${productName}" до кошика`}]);
     }
 
     function removeFromCart (id) {
-      setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart})));
+      dispatch(setProducts(products.map(product => ({...product, addedToCart: product.id === id ? false : product.addedToCart}))));
       const productName = products.filter(product => product.id === id).map(el => `${el.title}`)[0];
       setAlertMessage({text: `Ви видалили "${productName}" з кошика`, variant:'danger'});
       setMArr([...mArr, {text: `Ви видалили "${productName}" з кошика`, variant:'danger'}]);
     }
 
     function reduceQuantity (id) {
-      setProducts(products.map(product => ({...product, count: product.id === id ? 
+      dispatch(setProducts(products.map(product => ({...product, count: product.id === id ? 
                                                                product.count > 1 ? 
-                                                               product.count - 1 : product.count : product.count})))
+                                                               product.count - 1 : product.count : product.count}))))
     }
 
     function increaseQuantity (id) {
-      setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count})))
+      dispatch(setProducts(products.map(product => ({...product, count: product.id === id ? product.count + 1 : product.count}))))
     }
 
     return <div className="container bg-white"> 
